@@ -21,8 +21,8 @@ include('includes/functions.inc.php');
         </select>
         <input type="text" name="email" placeholder="Email">
         <input type="text" name="username" placeholder="Brugernavn">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="passwordrepeat" placeholder="Gentag password">
+        <input type="password" name="pwd" placeholder="Password">
+        <input type="password" name="pwdrepeat" placeholder="Gentag password">
         <button type="submit" name="submit">Sign Up</button>
       </form>
     </div>

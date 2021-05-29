@@ -15,9 +15,9 @@
         }
     }
 
-    function emptyInputSignup($f_name, $l_name, $email, $username, $password, $passwordrepeat) {
+    function emptyInputSignup($f_name, $l_name, $email, $username, $pwd, $pwdrepeat) {
       $result;
-      if (empty($f_name) || empty($l_name) || empty($email) || empty($username) || empty($password) || empty($passwordrepeat)) {
+      if (empty($f_name) || empty($l_name) || empty($email) || empty($username) || empty($pwd) || empty($pwdrepeat)) {
         $result = true;
       }
       else {
@@ -49,9 +49,9 @@
       return $result;
     }
 
-    function passwordMatch($password, $passwordrepeat) {
+    function pwdMatch($pwd, $pwdrepeat) {
       $result;
-      if ($password !== $passwordrepeat) {
+      if ($pwd !== $pwdrepeat) {
         $result = true;
       }
       else {
@@ -84,17 +84,17 @@
       mysqli_stmt_close($stmt);
     }
 
-    function createUser($mysqli, $username, $email, $password, $f_name, $l_name) {
+    function createUser($mysqli, $username, $email, $pwd, $f_name, $l_name) {
       $sql = "INSERT INTO users (username, email, password, f_name, l_name) VALUES(?, ?, ?, ?, ?);";
       $stmt = mysqli_stmt_init($mysqli);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.php?error=stsmtfailed");
+        header("location: ../signup.php?error=stmtfailed");
         exit();
       }
 
-      $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+      $hashedpassword = password_hash($pwd, PASSWORD_DEFAULT);
 
-      mysqli_stmt_bind_param($stmt, "ssssssi", $username, $email, $hashedpassword, $f_name, $l_name);
+      mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $hashedpassword, $f_name, $l_name);
       mysqli_stmt_execute($stmt);
       mysqli_stmt_close($stmt);
 

@@ -6,13 +6,13 @@ if (isset($_POST["submit"])) {
     $l_name = $_POST["l_name"];
     $email = $_POST["email"];
     $username = $_POST["username"];
-    $password = $_POST["password"];
-    $passwordrepeat = $_POST["passwordrepeat"];
+    $pwd = $_POST["pwd"];
+    $pwdrepeat = $_POST["pwdrepeat"];
 
     require_once 'dbconnect.inc.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputSignup($f_name, $l_name, $email, $username, $password, $passwordrepeat) !== false) {
+    if (emptyInputSignup($f_name, $l_name, $email, $username, $pwd, $pwdrepeat) !== false) {
       header("location: ../signup.php?error=emptyinput");
       exit();
     }
@@ -24,7 +24,7 @@ if (isset($_POST["submit"])) {
       header("location: ../signup.php?error=invalidemail");
       exit();
     }
-    if (passwordMatch($password, $passwordrepeat) !== false) {
+    if (pwdMatch($pwd, $pwdrepeat) !== false) {
       header("location: ../signup.php?error=passwordsmismatch");
       exit();
     }
@@ -37,7 +37,7 @@ if (isset($_POST["submit"])) {
       exit();
     } */
 
-    createUser($mysqli, $username, $email, $password, $f_name, $l_name, $address, $postal);
+    createUser($mysqli, $username, $email, $pwd, $f_name, $l_name, $address, $postal);
 
 
 }
