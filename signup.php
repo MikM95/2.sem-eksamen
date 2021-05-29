@@ -1,5 +1,6 @@
 <?php
 include 'templates/header.php';
+include('includes/dbconnect.inc.php');
  ?>
 
   <section class="signup-form">
@@ -9,7 +10,13 @@ include 'templates/header.php';
         <input type="text" name="f_name" placeholder="Fornavn">
         <input type="text" name="l_name" placeholder="Efternavn">
         <input type="text" name="address" placeholder="Addresse">
-        
+        <label for="postal">Vælg postnummer: </label>
+        <select name="postal">
+          <?php $data = performQuery("SELECT * FROM cities");
+          while($row = mysqli_fetch_assoc($data)) { ?>
+            <option value="<?php echo $row['postal']; ?>"><?php echo $row['postal'];?></option>
+          <?php } ?>
+        </select>
         <input type="text" name="email" placeholder="Email">
         <input type="text" name="username" placeholder="Brugernavn">
         <input type="password" name="password" placeholder="Password">
