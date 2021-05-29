@@ -19,7 +19,7 @@ include('includes/functions.inc.php');
           <?php } ?>
 
         </select>
-        <input type="text" name="email" placeholder="Email">
+        <input type="email" name="email" placeholder="Email">
         <input type="text" name="username" placeholder="Brugernavn">
         <input type="password" name="pwd" placeholder="Password">
         <input type="password" name="pwdrepeat" placeholder="Gentag password">
