@@ -8,6 +8,8 @@ include 'templates/header.php';
       <form action="includes/signup.inc.php" method="post">
         <input type="text" name="f_name" placeholder="Fornavn">
         <input type="text" name="l_name" placeholder="Efternavn">
+        <input type="text" name="address" placeholder="Addresse">
+        
         <input type="text" name="email" placeholder="Email">
         <input type="text" name="username" placeholder="Brugernavn">
         <input type="password" name="password" placeholder="Password">
