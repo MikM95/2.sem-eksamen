@@ -84,8 +84,8 @@
       mysqli_stmt_close($stmt);
     }
 
-    function createUser($mysqli, $username, $email, $password, $f_name, $l_name, $address, $postal) {
-      $sql = "INSERT INTO users (username, email, password, f_name, l_name, address, postal) VALUES(?, ?, ?, ?, ?, ?, ?);";
+    function createUser($mysqli, $username, $email, $password, $f_name, $l_name) {
+      $sql = "INSERT INTO users (username, email, password, f_name, l_name) VALUES(?, ?, ?, ?, ?);";
       $stmt = mysqli_stmt_init($mysqli);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../signup.php?error=stsmtfailed");
@@ -94,7 +94,7 @@
 
       $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
 
-      mysqli_stmt_bind_param($stmt, "ssssssi", $username, $email, $hashedpassword, $f_name, $l_name, $address, $postal);
+      mysqli_stmt_bind_param($stmt, "ssssssi", $username, $email, $hashedpassword, $f_name, $l_name);
       mysqli_stmt_execute($stmt);
       mysqli_stmt_close($stmt);
 

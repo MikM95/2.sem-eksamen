@@ -5,8 +5,6 @@ if (isset($_POST["submit"])) {
     $f_name = $_POST["f_name"];
     $l_name = $_POST["l_name"];
     $email = $_POST["email"];
-    $address = $_POST["address"];
-    $postal = $_POST["postal"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $passwordrepeat = $_POST["passwordrepeat"];
@@ -14,7 +12,7 @@ if (isset($_POST["submit"])) {
     require_once 'dbconnect.inc.php';
     require_once 'functions.inc.php';
 
-    if (emptyInputSignup($f_name, $l_name, $email, $address, $postal, $username, $password, $passwordrepeat) !== false) {
+    if (emptyInputSignup($f_name, $l_name, $email, $username, $password, $passwordrepeat) !== false) {
       header("location: ../signup.php?error=emptyinput");
       exit();
     }
@@ -24,14 +22,6 @@ if (isset($_POST["submit"])) {
     }
     if (invalidEmail($email) !== false) {
       header("location: ../signup.php?error=invalidemail");
-      exit();
-    }
-    if (invalidAddress($address) !== false) {
-      header("location: ../signup.php?error=invalidaddress");
-      exit();
-    }
-    if (invalidPostal($postal) !== false) {
-      header("location: ../signup.php?error=invalidpostal");
       exit();
     }
     if (passwordMatch($password, $passwordrepeat) !== false) {

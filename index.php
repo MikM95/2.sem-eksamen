@@ -1,4 +1,4 @@
-<?php include('functions.php') ?>
+<?php include('includes/functions.inc.php') ?>
 <?php
 include 'templates/header.php';
  ?>
