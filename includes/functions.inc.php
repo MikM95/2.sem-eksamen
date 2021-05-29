@@ -40,7 +40,7 @@
 
     function invalidEmail($email) {
       $result;
-      if (!filer_var($email, FILTER_VALIDATE_EMAIL, $username)) {
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL, $username)) {
         $result = true;
       }
       else {

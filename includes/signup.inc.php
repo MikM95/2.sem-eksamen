@@ -32,10 +32,10 @@ if (isset($_POST["submit"])) {
       header("location: ../signup.php?error=usernametaken");
       exit();
     }
-    if (passwordLength($password, $passwordrepeat) <6) {
+  /*  if (passwordLength($password, $passwordrepeat) <6) {
       header("location: ../signup.php?error=passwordtooshort");
       exit();
-    }
+    } */
 
     createUser($mysqli, $username, $email, $password, $f_name, $l_name, $address, $postal);
 
