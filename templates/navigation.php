@@ -8,7 +8,7 @@
 
 
   <ul class="navigation">
-    <li> <a href="">1</a> </li>
+    <li> <a href="index.php">forside</a> </li>
     <li> <a href="">2</a> </li>
     <li> <a href="signup.php">Sign up</a> </li>
     <li> <a href="login.php">Log in</a> </li>
