@@ -13,6 +13,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
   <p>Auktionen startede d.: <?php echo $row['created_at']; ?></p>
   <p>Nuværende højeste bud: <?php echo $row['bid_amount']; ?></p>
   <?php
+    print_r($_POST['bid']);
     $end_of_auction = strtotime($row['auc_end']);
     $sec_left = $end_of_auction - time();
     $days_left = floor($sec_left / (60*60*24));
@@ -30,7 +31,12 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
   <button type="submit">Afgiv bud</button>
 </form>
 
-
+<?php if(isset($_POST['bid']) and $_POST['bid'] > $row['bid_amount']){
+  $bid = $_POST['bid'];
+  performQuery("INSERT INTO bid(user_id, item_id, bid_amount) VALUES (1, $item_id,$bid)");
+} else {
+  echo "Dit bud skal være over det nuværende højeste bud";
+}?>
 
 
  <?php
