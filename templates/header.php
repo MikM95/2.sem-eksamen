@@ -32,5 +32,4 @@
       </ul>
     </div>
   </nav>
-
-<div class="wrapper">
+	

@@ -1,0 +1,21 @@
+.index-layout {
+  background-color: red;
+  display: flex;
+}
+.flex-child-aside {
+  border: 1px solid black;
+  background-color: brown;
+  flex: 1;
+}
+.flex-child-main {
+  background-color: blue;
+  border: 1px solid pink;
+  flex: 5;
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex_child_of_child {
+  flex: 1;
+  border: 1px solid black;
+  min-width: 200px;
+}
