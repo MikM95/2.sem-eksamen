@@ -13,7 +13,6 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
   <p>Auktionen startede d.: <?php echo $row['created_at']; ?></p>
   <p>Nuværende højeste bud: <?php echo $row['bid_amount']; ?></p>
   <?php
-    print_r($_POST['bid']);
     $end_of_auction = strtotime($row['auc_end']);
     $sec_left = $end_of_auction - time();
     $days_left = floor($sec_left / (60*60*24));
@@ -24,19 +23,30 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
   <p>Auktionen slutter om: <?php echo $days_left; ?> dage, <?php echo $hours_left_minus_days; ?> timer, <?php echo $min_left_minus_days_and_hours; ?> minutter og <?php echo $sec_left_minus_everything; ?> sekunder! </p>
   <p>Beskrivelse af produktet: <?php echo $row['description']; ?></p>
 
-<?php } ?>
+<?php
+if (isset($_SESSION["useruid"])) {
+
+
+  if(isset($_POST['bid']) and $_POST['bid'] > $row['bid_amount']){
+    $bid = $_POST['bid'];
+    $userid = $_SESSION["userid"];
+    performQuery("INSERT INTO bid(user_id, item_id, bid_amount) VALUES ($userid, $item_id,$bid)");
+  }
+  else if (isset($_POST['bid']) and $_POST['bid'] < $row['bid_amount']) {
+      echo "Dit bud skal være over det nuværende højeste bud";
+  }
+  }
+  else {
+    echo "You need to be logged in, to be able to bid on items.";
+  }
+ }
+
+?>
 
 <form method="post">
   <input type="number" name="bid" placeholder="">
   <button type="submit">Afgiv bud</button>
 </form>
-
-<?php if(isset($_POST['bid']) and $_POST['bid'] > $row['bid_amount']){
-  $bid = $_POST['bid'];
-  performQuery("INSERT INTO bid(user_id, item_id, bid_amount) VALUES (1, $item_id,$bid)");
-} else {
-  echo "Dit bud skal være over det nuværende højeste bud";
-}?>
 
 
  <?php
