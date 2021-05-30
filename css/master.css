@@ -8,7 +8,7 @@
   flex: 1;
 }
 .flex-child-main {
-  background-color: blue;
+  background-color: white;
   border: 1px solid pink;
   flex: 5;
   display: flex;
