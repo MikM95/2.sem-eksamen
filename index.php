@@ -20,17 +20,11 @@ while($output_data = mysqli_fetch_assoc($db_data)) { ?>
 
         $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
 
-        while($new = mysqli_fetch_assoc($db_bid_data)) {
-          $currentbid = $new['bid_amount'];
-
-
-        if ($currentbid < $start_price) {
-          echo $output_data['start_price'];
-        } else { ?>
+        while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
           <p>Højeste bud: <?php echo $new['bid_amount'];?> </p>
-        <?php
-       }}
-        ?>
+
+    <?php }?>
+
 
 <?php //jeg har det problem at siden ikke vil vise startprisen på en vare hvis der ikke er kommet et bud på varen. På vare 2 har jeg lagt et bud ind i databasen som er under startprisen og så virker det. Det er dog ikke meningen at man skal kunne byde under startprisen. En mulig løsning er at lave det sådan at man opretter et bud på startprisen når man sætter en ting til salg, men det giver problemer hvis ingen byder på varen, så vinder man den selv? der må være en smartere måde at lave det på. spørg kenneth tirsdag ?>
 

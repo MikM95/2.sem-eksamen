@@ -17,5 +17,6 @@
 .flex_child_of_child {
   flex: 1;
   border: 1px solid black;
-  min-width: 200px;
+  min-width: 250px;
+  text-align: center;
 }
