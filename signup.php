@@ -20,7 +20,7 @@ include('includes/functions.inc.php');
 
         </select>
         <input type="email" name="email" placeholder="Email">
-        <input type="text" name="username" placeholder="Brugernavn">
+        <input type="text" name="uid" placeholder="Brugernavn">
         <input type="password" name="pwd" placeholder="Password">
         <input type="password" name="pwdrepeat" placeholder="Gentag password">
         <button type="submit" name="submit">Sign Up</button>
@@ -31,7 +31,7 @@ include('includes/functions.inc.php');
         if ($_GET["error"] == "emptyinput") {
           echo "<p> Fill in all fields</p>";
         }
-        else if ($_GET["error"] == "invalidusername") {
+        else if ($_GET["error"] == "invaliduid") {
           echo "<p> Invalid username</p>";
         }
         else if ($_GET["error"] == "invalidemail") {

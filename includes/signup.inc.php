@@ -5,7 +5,7 @@ if (isset($_POST["submit"])) {
     $f_name = $_POST["f_name"];
     $l_name = $_POST["l_name"];
     $email = $_POST["email"];
-    $username = $_POST["username"];
+    $username = $_POST["uid"];
     $pwd = $_POST["pwd"];
     $pwdrepeat = $_POST["pwdrepeat"];
 
@@ -16,8 +16,8 @@ if (isset($_POST["submit"])) {
       header("location: ../signup.php?error=emptyinput");
       exit();
     }
-    if (invalidUsername($username) !== false) {
-      header("location: ../signup.php?error=invalidusername");
+    if (invalidUid($uid) !== false) {
+      header("location: ../signup.php?error=invaliduid");
       exit();
     }
     if (invalidEmail($email) !== false) {
@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
       header("location: ../signup.php?error=passwordsmismatch");
       exit();
     }
-    if (usernameExists($mysqli, $username, $email) !== false) {
+    if (uidExists($mysqli, $username, $email) !== false) {
       header("location: ../signup.php?error=usernametaken");
       exit();
     }

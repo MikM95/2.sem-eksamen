@@ -26,7 +26,7 @@
       return $result;
     }
 
-    function invalidUsername($username) {
+    function invalidUid($username) {
       $result;
       //preg_match er en søge algoritme der tjekker om det inde i de firkantede paranteser er true. linje 32 tjekker om der er brugt noget der ikke passer inden for a-z OG A-Z OG 0-9, pga ! før preg_match tjekker den om det IKKE er rigtigt om de tegn er der aka. den tjekker om der er fejl i brugernavnet i tilfælde af de vil bruge accenter etc.
       if (!preg_match('/^[a-zA-Z0-9]*$/', $username)) {
@@ -60,11 +60,11 @@
       return $result;
     }
 
-    function usernameExists($mysqli, $username, $email) {
+    function uidExists($mysqli, $username, $email) {
       $sql = "SELECT * FROM users WHERE username = ? OR email = ?;";
       $stmt = mysqli_stmt_init($mysqli);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.php?error=stsmtfailed");
+        header("location: ../signup.php?error=stmtfailed");
         exit();
       }
 
@@ -114,14 +114,14 @@
     }
 
     function loginUser($mysqli, $username, $pwd) {
-      $usernameExists = usernameExists($mysqli, $username, $username);
+      $uidExists = uidExists($mysqli, $username, $username);
 
-      if ($usernameExists == false) {
+      if ($uidExists === false) {
         header("location: ../login.php?error=wronglogin");
         exit();
       }
 
-      $pwdHashed = $usernameExists["password"];
+      $pwdHashed = $uidExists["password"];
       $checkPwd = password_verify($pwd, $pwdHashed);
 
       if ($checkPwd === false) {
@@ -130,8 +130,8 @@
       }
       else if ($checkPwd === true) {
         session_start();
-        $_SESSION["userid"] = $usernameExists["id"];
-        $_SESSION["userusername"] = $usernameExists["username"];
+        $_SESSION["userid"] = $uidExists["id"];
+        $_SESSION["useruid"] = $uidExists["username"];
         header("location: ../index.php");
         exit();
       }
