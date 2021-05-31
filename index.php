@@ -5,10 +5,23 @@ include 'templates/header.php';
 ?>
 <div class="index-layout">
 <aside class="flex-child-aside">
-aside
+Categories
+<ul>
+  <?php $db_categories_data = performQuery("SELECT * FROM categories");
+  while ($categories = mysqli_fetch_assoc($db_categories_data)) { ?>
+  <a href="index.php?category_id=<?php echo $categories['id']; ?> "><li><?php echo $categories['name']; ?></li></a>
+  <?php } ?>
+</ul>
 </aside>
 <main class="flex-child-main">
-<?php $db_data = performQuery("SELECT id, title, image, auc_end, start_price FROM user_items");
+<?php
+if (isset($_GET['category_id'])) {
+  $select_categry = $_GET['category_id'];
+  $db_data = performQuery("SELECT user_items.id, title, image, auc_end, start_price, tag.category_id FROM user_items inner join tag on tag.item_id = user_items.id where tag.category_id = $select_categry");
+} else {
+  $db_data = performQuery("SELECT id, title, image, auc_end, start_price FROM user_items");
+}
+
 while($output_data = mysqli_fetch_assoc($db_data)) { ?>
   <a href="item-single.php?item_id=<?php echo $output_data['id'];?>">
     <div class="flex_child_of_child">
