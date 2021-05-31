@@ -37,21 +37,25 @@ while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
     else if (isset($_POST['bid']) and $_POST['bid'] < $new['bid_amount']) {
         echo "Dit bud skal være over det nuværende højeste bud";
     }
+
+    ?>
+    <form method="post">
+      <input type="number" name="bid" placeholder="">
+      <button type="submit">Afgiv bud</button>
+    </form>
+<?php
     }
     else {
       echo "You need to be logged in, to be able to bid on items.";
     }
-  } ?>
+  }
+
+  ?>
 
 
 
 
 <p>Auktionen slutter om: <?php echo $days_left; ?> dage, <?php echo $hours_left_minus_days; ?> timer, <?php echo $min_left_minus_days_and_hours; ?> minutter og <?php echo $sec_left_minus_everything; ?> sekunder! </p>
-
-<form method="post">
-  <input type="number" name="bid" placeholder="">
-  <button type="submit">Afgiv bud</button>
-</form>
 
 <p>Beskrivelse af produktet: <?php echo $row['description']; ?></p>
 <?php } ?>
