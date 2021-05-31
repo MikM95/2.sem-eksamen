@@ -57,6 +57,14 @@ while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
 
 <p>Auktionen slutter om: <?php echo $days_left; ?> dage, <?php echo $hours_left_minus_days; ?> timer, <?php echo $min_left_minus_days_and_hours; ?> minutter og <?php echo $sec_left_minus_everything; ?> sekunder! </p>
 
+<?php $db_category_data = performQuery("SELECT name FROM categories inner join tag on tag.category_id = categories.id WHERE tag.item_id = $item_id"); ?>
+<p>This item is included in the following categories:</p>
+<ul>
+<?php while ($categories_name = mysqli_fetch_assoc($db_category_data)) { ?>
+  <li><?php echo $categories_name['name']; ?></li>
+<?php } ?>
+</ul>
+
 <p>Beskrivelse af produktet: <?php echo $row['description']; ?></p>
 <?php } ?>
  <?php
