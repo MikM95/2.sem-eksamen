@@ -136,14 +136,3 @@
         exit();
       }
     }
-  /*  function bidTooLow($item_id) {
-      $db_start_price = performQuery("SELECT start_price from user_items where id = $item_id");
-      while ($asdf = mysqli_fetch_assoc($db_start_price)) {
-         $asdf['start_price'];
-         if ($asdf['start_price'] > $_POST['bid']) {
-        //   header("location: ../item-single.php?item_id=$item_id['id']");
-        echo "fejl, for lavt bid";
-           exit();
-         }
-      } */
-    }
