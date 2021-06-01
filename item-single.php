@@ -24,6 +24,9 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
 
 
 <?php $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
+if(mysqli_num_rows($db_bid_data) < 0){
+  echo "There are no bids on this item yet.";
+} else {
 while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
     <p>Nuværende højeste bud: <?php echo $new['bid_amount']; ?></p>
   <?php
@@ -49,7 +52,7 @@ while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
       echo "You need to be logged in, to be able to bid on items.";
     }
   }
-
+}
   ?>
 
 
