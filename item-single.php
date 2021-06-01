@@ -22,21 +22,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
   ?>
   <p>Beskrivelse af produktet: <?php echo $row['description']; ?></p>
 
-  <!-- echo af højeste bud -->
 
-  <?php $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
-
-  if(mysqli_num_rows($db_bid_data) > 0){
-    while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
-      <p>Nuværende højeste bud: <?php echo $new['bid_amount']; ?></p>
-  <?php
-    }
-  }
-  else {
-    echo "There are no bids on this item.";
-  }
-
-?>
 <!-- visning af bud felt, hvis man er logget ind -->
 <?php
 
@@ -86,11 +72,22 @@ else {
         if (isset($_POST['bid']) and $_POST['bid'] < $db_highest_bid['bid_amount']){
             echo "Dit bud skal være over det nuværende højeste bud";
         }
-
-
   }
 }
+?>
+<!-- echo af højeste bud -->
 
+<?php $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
+
+if(mysqli_num_rows($db_bid_data) > 0){
+  while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
+    <p>Nuværende højeste bud: <?php echo $new['bid_amount']; ?></p>
+<?php
+  }
+}
+else {
+  echo "There are no bids on this item.";
+}
 
 
 }
