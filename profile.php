@@ -19,21 +19,17 @@ while ($profile = mysqli_fetch_assoc($db_data_profile)) { ?>
 
 <?php
 $db_own_auctions = performQuery("SELECT id, title, created_at, auc_end from user_items where user_id = $userid");
-while ($own_auctions = mysqli_fetch_assoc($db_own_auctions)) {
-  print_r($db_own_auctions);
-  if(empty($db_own_auctions)) {
-    echo "You have not created any auctions!";
-  }else {
-  echo "Virker ikke";
-//
-  //   echo $own_auctions['title'];
-  //   echo $own_auctions['created_at'];
-  //   echo $own_auctions['auc_end'];
-//}
-
+if (mysqli_num_rows($db_own_auctions) > 0) {
+  while ($own_auctions = mysqli_fetch_assoc($db_own_auctions)) {
+  echo $own_auctions['title'];
+  echo $own_auctions['created_at'];
+  echo $own_auctions['auc_end'];
 }
+} else {
+  echo "You have not created any auctions!";
 }
 
+  
 
  ?>
 
