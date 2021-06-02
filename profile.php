@@ -40,15 +40,22 @@ if (mysqli_num_rows($db_own_auctions) > 0) {
 
 // Echo af auktioner du har vundet
 
+$db_won_auctions = performQuery("SELECT * FROM bid inner join user_items on user_items.id = bid.item_id where bid.user_id = $userid and bid.winning_bid= 1");
+if (mysqli_num_rows($db_won_auctions) > 0 ) {
+  while ($won_auctions = mysqli_fetch_assoc($db_won_auctions)) { ?>
+    <p> Du har vundet følgende auktion: </p>
+    <p>Titel: <?php echo $won_auctions['title']; ?></p>
+    <p>Auktionen vundet d.: <?php echo $won_auctions['auc_end'];  ?></p>
+    <p>købt for: <?php echo $won_auctions['bid_amount'];  ?></p>
+    <?php // I det sidste felt skal der vises hvem sælgeren er ?>
+    <p> Købt af: <?php echo $won_auctions[''];  ?></p>
 
-
-if (time() > $row['auc_end']) {
-  // code...
-  echo "nuværende date er større end slut datoen - auktionen er slut";
-}else {
-  // code...
-  echo "slut datoen er ikke kommet endnu";
-}
+    <?php }
+} else {
+  // Hvis antallet af rows vi får tilbage fra databasen er mindre end nul har brugeren ikke vundet nogle auktioner
+  ?>
+  <p><?php echo "You have not won any auctions yet"; ?> </p>
+  <?php }
 
 
  ?>

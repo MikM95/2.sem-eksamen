@@ -31,13 +31,20 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
 
     <!-- echo af det vindende bud + fornavn og efternavn på den person der gav det vindende bud -->
 
-    <?php $db_bid_data = performQuery("SELECT bid_amount, users.f_name, users.l_name  FROM bid inner join users on users.id = bid.user_id WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
+    <?php $db_bid_data = performQuery("SELECT bid_id, bid_amount, winning_bid, users.f_name, users.l_name  FROM bid inner join users on users.id = bid.user_id WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
 
     if(mysqli_num_rows($db_bid_data) > 0){
       while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
         <p>This item was sold for: <?php echo $new['bid_amount']; ?></p>
         <p>This auction was won by: <?php echo $new['f_name'] . " " . $new['l_name']; ?></p>
+
         <?php
+  // sætter winnig_bid til true i databasen
+        $bid_id = $new['bid_id'];
+        // det ville være pænere at sætte $new['bid_id'] direkte i query'en men jeg kan ikke få den til at forstå det, det virker som det ser ud nu
+         performQuery("UPDATE bid SET winning_bid = 1 where bid_id = $bid_id");
+
+
       }
     }
     else {
