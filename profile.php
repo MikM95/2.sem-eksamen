@@ -25,11 +25,12 @@ while ($profile = mysqli_fetch_assoc($db_data_profile)) { ?>
 // echo af egne auktioners data
 $db_own_auctions = performQuery("SELECT id, title, created_at, auc_end from user_items where user_id = $userid");
 if (mysqli_num_rows($db_own_auctions) > 0) {
-  while ($own_auctions = mysqli_fetch_assoc($db_own_auctions)) {
-  echo $own_auctions['title'];
-  echo $own_auctions['created_at'];
-  echo $own_auctions['auc_end'];
-?><hr><?php
+  ?> <p>You have created the following auctions: </p> <?php
+  while ($own_auctions = mysqli_fetch_assoc($db_own_auctions)) {?>
+  <p>Title: <?php echo $own_auctions['title']; ?></p>
+  <p>Auction created at: <?php echo $own_auctions['created_at']; ?>
+  <p>The auction ends: <?php echo $own_auctions['auc_end']; ?>
+<hr><?php
   //der skal også printes data af hvem der evt har vundet auktionen, og hvad det vindende bud var på
 }
 } else {
@@ -55,16 +56,19 @@ WHERE bid.bid_at < user_items.auc_end and bid.user_id = $userid
 GROUP by bid.item_id");
   if (mysqli_num_rows($db_active_auction_bids) > 0) {
     // code...
-    ?> <p>You have active bids on the following auctions: </p>
+    ?>
+    <p>You have active bids on the following auction(s): </p>
     <?php
-        while($active_auction_bids = mysqli_fetch_assoc($db_active_auction_bids)){ ?>
+        while($active_auction_bids = mysqli_fetch_assoc($db_active_auction_bids)){
+          $item_id = $active_auction_bids['item_id']; ?>
+          <a href="item-single.php?item_id=<?php echo $item_id; ?>">
           <p>Titel: <?php echo $active_auction_bids['title']; ?></p>
           <?php // echo af image ?>
           <p>The start price was: <?php echo $active_auction_bids['start_price'];  ?></p>
           <p>The auction began at: <?php echo $active_auction_bids['created_at'];  ?></p>
           <p>The auction ends at: <?php echo $active_auction_bids['auc_end'] ?></p>
               <?php
-              $item_id = $active_auction_bids['item_id'];
+
               $db_data_bids = performQuery("SELECT bid.bid_amount, bid.bid_at, users.f_name, users.l_name, users.email FROM bid
                 INNER JOIN users ON bid.user_id = users.id
                 WHERE item_id = $item_id  ORDER BY bid_amount desc limit 1");
@@ -76,12 +80,13 @@ GROUP by bid.item_id");
 
           <p>The seller is: <?php echo $active_auction_bids['f_name'] . " " . $active_auction_bids['l_name'];  ?></p>
           <p>Mail the seller with further questions: <?php echo $active_auction_bids['email'];  ?></p>
+          </a>
           <hr>
     <?php }
   }
   else {
     // code...
-    echo "<br> no active bids";
+    echo "You have no active bids";
     ?><hr><?php
 
   }
@@ -94,16 +99,16 @@ inner join user_items on user_items.id = bid.item_id
 INNER JOIN users on user_items.user_id = users.id
 where bid.user_id = $userid and bid.winning_bid= 1");
 if (mysqli_num_rows($db_won_auctions) > 0 ) { ?>
-    <p> Du har vundet følgende auktioner: </p>
+    <p> You have won the following auction(s): </p>
     <?php
         while ($won_auctions = mysqli_fetch_assoc($db_won_auctions)) { ?>
         <p>Titel: <?php echo $won_auctions['title']; ?></p>
         <?php // echo af image ?>
-        <p>Auktionen vundet d.: <?php echo $won_auctions['auc_end'];  ?></p>
-        <p>Auktionens startpris:  <?php echo $won_auctions['start_price'];  ?></p>
-        <p>købt for: <?php echo $won_auctions['bid_amount'];  ?></p>
-        <p>Købt af: <?php echo $won_auctions['f_name'] . " " . $won_auctions['l_name'];  ?></p>
-        <p>Kontakt sælger på: <?php echo $won_auctions['email'];  ?></p>
+        <p>The auction ended:  <?php echo $won_auctions['auc_end'];  ?></p>
+        <p>Startprice:  <?php echo $won_auctions['start_price'];  ?></p>
+        <p>You bought it for:  <?php echo $won_auctions['bid_amount'];  ?></p>
+        <p>Seller:  <?php echo $won_auctions['f_name'] . " " . $won_auctions['l_name'];  ?></p>
+        <p>Contact seller with further questions:  <?php echo $won_auctions['email'];  ?></p>
         <hr>
         <?php }
 } else {
