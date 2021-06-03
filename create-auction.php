@@ -1,16 +1,8 @@
 <?php
-include('dbconnect.inc.php')
+include('includes/functions.inc.php');
+include('includes/dbconnect.inc.php');
+include 'templates/header.php';
  ?>
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Opret en auktion</title>
-    <link rel="stylesheet" href="css/master.css">
-
-  </head>
-  <body>
     <p class="formular">
       <form method="POST">
         <p> Opret en ny auktion </p> <br>
@@ -20,5 +12,6 @@ include('dbconnect.inc.php')
         <!-- mål skal være description -->
 
 
-  </body>
-</html>
+<?php
+include 'templates/footer.php';
+?>
