@@ -5,8 +5,8 @@ include 'templates/header.php';
 ?>
 <div class="index-layout">
 <aside class="flex-child-aside">
-Categories
-<ul>
+<p id="aside_title">Categories</p>
+<ul class="list_style_tpye_aside">
   <?php $db_categories_data = performQuery("SELECT * FROM categories");
   while ($categories = mysqli_fetch_assoc($db_categories_data)) { ?>
   <a href="index.php?category_id=<?php echo $categories['id']; ?> "><li><?php echo $categories['name']; ?></li></a>
@@ -23,8 +23,9 @@ if (isset($_GET['category_id'])) {
 }
 
 while($output_data = mysqli_fetch_assoc($db_data)) { ?>
-  <a href="item-single.php?item_id=<?php echo $output_data['id'];?>">
+
     <div class="flex_child_of_child">
+      <a href="item-single.php?item_id=<?php echo $output_data['id'];?>">
       <p class="bold"><?php echo $output_data['title']; ?></p>
       <p>Auction ends: <?php echo $output_data['auc_end']; ?> </p>
       <p>Starting price: <?php echo $output_data['start_price'];?></p>
@@ -52,9 +53,9 @@ if (mysqli_num_rows($db_bid_data) > 0) {
 
 
 
-
+</a>
     </div>
-  </a>
+
 <?php } ?>
 
 

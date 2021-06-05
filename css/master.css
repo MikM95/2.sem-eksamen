@@ -1,31 +1,28 @@
 .index-layout {
-  background-color: red;
   display: flex;
 }
 .flex-child-aside {
   border: 1px solid black;
-  background-color: brown;
+  border-radius: 8px;
   flex: 1;
 }
 .flex-child-main {
-  background-color: white;
-  border: 1px solid pink;
-  flex: 5;
   display: flex;
+  flex: 5;
   flex-wrap: wrap;
 }
 .flex-child-main a {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 }
 .flex_child_of_child {
-  flex: 1;
+  background-color: grey;
+  border-radius: 8px;
   border: 1px solid black;
+  flex: 1;
+  margin: 20px;
   min-width: 250px;
   text-align: center;
-  margin: 20px;
-  border-radius: 8px;
-  background-color: grey;
 }
 
 .formular{
@@ -41,10 +38,10 @@
   justify-content: center;
 }
 .flex-child-profile {
+  background-color: grey;
   border-radius: 8px;
   border: 1px solid black;
   padding: 25px;
-  background-color: grey;
 }
 .flex-container-auctions {
   display: flex;
@@ -53,12 +50,12 @@
 }
 
 .bold-text {
-  font-weight: bold;
   border-bottom: 1px solid black;
+  font-weight: bold;
 }
 .flex-child-profile a {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 }
 .bottom-border {
   border-bottom: 1px solid black;
@@ -68,5 +65,26 @@
   margin-top: 75px;
 }
 .bold {
+  font-weight: bold;
+}
+#aside_title {
+  background-color: yellow;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  /* border radius for at border passer med diven der er udenom denne <p> */
+}
+.list_style_tpye_aside {
+  list-style-type: none;
+}
+.list_style_tpye_aside a {
+  color: black;
+  text-decoration: none;
+}
+.list_style_tpye_aside a li:hover {
+  background-color: yellow;
+  color: blue;
   font-weight: bold;
 }
