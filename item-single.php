@@ -54,8 +54,6 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
 
   } else {
     // Hvis der er mere end 0 sekunder tilbage skal det stadig være muligt at byde som normalt
-    echo "Auktionen er stadig igang";
-
       ?>
 
     <!-- nedtællingen til auktionen er slut -->
@@ -69,7 +67,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
         ?>
         <form method="post">
           <input type="number" name="bid" placeholder="">
-          <button type="submit">Afgiv bud</button>
+          <button type="submit">Submit bid</button>
         </form>
         <?php
       }
@@ -82,7 +80,6 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
       <?php
       $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id");
       if (mysqli_num_rows($db_bid_data) == 0) {
-        echo "Der er ingen bud i databasen";
         $db_start_price = performQuery("SELECT start_price from user_items where id = $item_id");
         while ($start_price = mysqli_fetch_assoc($db_start_price)) {
           if (isset($_POST['bid']) and $_POST['bid'] > $start_price['start_price']) {
@@ -91,11 +88,11 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
             performQuery("INSERT INTO bid(user_id, item_id, bid_amount) VALUES ($userid, $item_id,$bid)");
           }
           if (isset($_POST['bid']) and $_POST['bid'] < $start_price['start_price']){
-              echo "Dit bud skal være over det nuværende højeste bud";
+              echo "Your bid has to be above the current highest bid";
+
             }
           }
         } else {
-          echo "Der er bud i databasen";
           $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
           while($db_highest_bid = mysqli_fetch_assoc($db_bid_data)) {
             if (isset($_POST['bid']) and $_POST['bid'] > $db_highest_bid['bid_amount']) {
@@ -106,7 +103,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
                 //mangler en form for refresh
               }
               if (isset($_POST['bid']) and $_POST['bid'] < $db_highest_bid['bid_amount']){
-                echo "Dit bud skal være over det nuværende højeste bud";
+                echo "Your bid has to be above the current highest bid";
               }
             }
           }
@@ -117,7 +114,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
 
           if(mysqli_num_rows($db_bid_data) > 0){
             while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
-              <p>Nuværende højeste bud: <?php echo $new['bid_amount']; ?></p>
+              <p>Current highest bid: <?php echo $new['bid_amount']; ?></p>
               <?php
             }
           }
@@ -150,8 +147,6 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
   <li><?php echo $categories_name['name']; ?></li>
 <?php } ?>
 </ul>
-
-
 
 
  <?php

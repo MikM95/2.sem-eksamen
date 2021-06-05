@@ -9,5 +9,5 @@
     echo "connection failed" . mysqli_connect_errno();
     }
   else {
-    echo "connection success! <br>";
+    //echo "connection success! <br>";
     }
