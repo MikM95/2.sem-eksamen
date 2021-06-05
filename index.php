@@ -25,7 +25,7 @@ if (isset($_GET['category_id'])) {
 while($output_data = mysqli_fetch_assoc($db_data)) { ?>
   <a href="item-single.php?item_id=<?php echo $output_data['id'];?>">
     <div class="flex_child_of_child">
-      <p class="bold-big-text"><?php echo $output_data['title']; ?></p>
+      <p class=""><?php echo $output_data['title']; ?></p>
       <p>Slutter d.:<?php echo $output_data['auc_end']; ?> </p>
       <p>Startpris: <?php echo $output_data['start_price'];?></p>
       <?php $item_id = $output_data['id'];

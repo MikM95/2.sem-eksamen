@@ -9,17 +9,19 @@ include 'templates/header.php';
   $userid = $_SESSION["userid"];?>
 
 <div class="flex-container-center">
-  <div class="flex-child-profile">
-    <p class="bold-text">Your user profile</p>
-    <?php
-    // echo af profil data
-    $db_data_profile = performQuery("SELECT username, email, f_name, l_name from users where id= $userid");
+  <div>
+    <div class="flex-child-profile">
+      <p class="bold-text">Your user profile</p>
+      <?php
+      // echo af profil data
+      $db_data_profile = performQuery("SELECT username, email, f_name, l_name from users where id= $userid");
 
-    while ($profile = mysqli_fetch_assoc($db_data_profile)) { ?>
-      <p>Username: <?php echo $profile['username']; ?></p>
-      <p>Name: <?php echo $profile['f_name'] . " " . $profile['l_name']; ?></p>
-      <p>Email: <?php echo $profile['email']; ?></p>
-
+      while ($profile = mysqli_fetch_assoc($db_data_profile)) { ?>
+        <p>Username: <?php echo $profile['username']; ?></p>
+        <p>Name: <?php echo $profile['f_name'] . " " . $profile['l_name']; ?></p>
+        <p>Email: <?php echo $profile['email']; ?></p>
+      </div>
+      <p class="profile-separator">Click any auction to go its specific site</p>
     <?php } ?>
   </div>
 </div>
