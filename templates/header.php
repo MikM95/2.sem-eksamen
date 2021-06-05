@@ -17,8 +17,8 @@
     <div class="wrapper">
       <a href="index.php"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ikea_logo.svg/2560px-Ikea_logo.svg.png" alt="Ikea logo" style="width:150px;height:auto;"></a>
       <ul class="navigation">
-        <li> <a href="index.php">forside</a> </li>
-        <li> <a href="">2</a> </li>
+        <li> <a href="index.php">All auctions</a> </li>
+        <li> <a href="create-auction.php">Create new auction</a> </li>
 				<?php
 					if (isset($_SESSION["useruid"])) {
 						echo "<li> <a href='profile.php'>Profile</a> </li>";

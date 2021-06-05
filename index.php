@@ -25,16 +25,16 @@ if (isset($_GET['category_id'])) {
 while($output_data = mysqli_fetch_assoc($db_data)) { ?>
   <a href="item-single.php?item_id=<?php echo $output_data['id'];?>">
     <div class="flex_child_of_child">
-      <p class=""><?php echo $output_data['title']; ?></p>
-      <p>Slutter d.:<?php echo $output_data['auc_end']; ?> </p>
-      <p>Startpris: <?php echo $output_data['start_price'];?></p>
+      <p class="bold"><?php echo $output_data['title']; ?></p>
+      <p>Auction ends: <?php echo $output_data['auc_end']; ?> </p>
+      <p>Starting price: <?php echo $output_data['start_price'];?></p>
       <?php $item_id = $output_data['id'];
       $start_price = $output_data['start_price'];
 
         $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id ORDER BY bid_amount desc limit 1");
 if (mysqli_num_rows($db_bid_data) > 0) {
   while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
-    <p>Højeste bud: <?php echo $new['bid_amount'];?> </p>
+    <p>Current highest bid: <?php echo $new['bid_amount'];?> </p>
 
 <?php }
 } else { ?>

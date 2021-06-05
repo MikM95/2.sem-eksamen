@@ -8,10 +8,10 @@ $item_id = $_GET['item_id'];
 <?php
 $db_data_item_single = performQuery("SELECT user_items.id, title, users.f_name, users.l_name, created_at, start_price, image, description, auc_end from user_items inner join users on user_items.user_id = users.id where user_items.id=$item_id");
 while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
-  <p>Auktion for: <?php echo $row['title']; ?></p>
-  <p>Sælger: <?php echo $row['f_name'] . " " . $row['l_name']; ?></p>
-  <p>Auktionen startede d.: <?php echo $row['created_at']; ?></p>
-  <p>Start pris: <?php echo $row['start_price']; ?></p>
+  <p>Auction for: <?php echo $row['title']; ?></p>
+  <p>Seller:  <?php echo $row['f_name'] . " " . $row['l_name']; ?></p>
+  <p>The auction startede at: <?php echo $row['created_at']; ?></p>
+  <p>The startprice was: <?php echo $row['start_price']; ?></p>
   <?php
     $end_of_auction = strtotime($row['auc_end']);
     $sec_left = $end_of_auction - time();
@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
     $min_left_minus_days_and_hours = floor(($sec_left - $hours_left_minus_days * (60*60)-$days_left * (60*60*24)) / 60);
     $sec_left_minus_everything = floor($sec_left - ($min_left_minus_days_and_hours * 60) - ($hours_left_minus_days * 60*60) - ($days_left * 60*60*24));
   ?>
-  <p>Beskrivelse af produktet: <?php echo $row['description']; ?></p>
+  <p>Sellers description of the product:  <?php echo $row['description']; ?></p>
 
 <?php
   if ($sec_left < 0) {
@@ -60,7 +60,7 @@ while ($row = mysqli_fetch_assoc($db_data_item_single)) { ?>
 
     <!-- nedtællingen til auktionen er slut -->
 
-      <p>Auktionen slutter om: <?php echo $days_left; ?> dage, <?php echo $hours_left_minus_days; ?> timer, <?php echo $min_left_minus_days_and_hours; ?> minutter og <?php echo $sec_left_minus_everything; ?> sekunder! </p>
+      <p>The auction ends in: <?php echo $days_left; ?> day(s), <?php echo $hours_left_minus_days; ?> hour(s), <?php echo $min_left_minus_days_and_hours; ?> minute(s) and <?php echo $sec_left_minus_everything; ?> seconds! </p>
 
       <!-- visning af bud felt, hvis man er logget ind -->
       <?php

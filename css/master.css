@@ -14,12 +14,20 @@
   display: flex;
   flex-wrap: wrap;
 }
+.flex-child-main a {
+  text-decoration: none;
+  color: black;
+}
 .flex_child_of_child {
   flex: 1;
   border: 1px solid black;
   min-width: 250px;
   text-align: center;
+  margin: 20px;
+  border-radius: 8px;
+  background-color: grey;
 }
+
 .formular{
   display: flex;
   justify-content: center;
@@ -58,4 +66,7 @@
 }
 .profile-separator {
   margin-top: 75px;
+}
+.bold {
+  font-weight: bold;
 }
