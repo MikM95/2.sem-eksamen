@@ -28,3 +28,31 @@
   margin-left: auto;
   margin-right: auto;
 }
+.flex-container-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-child-profile {
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 25px;
+  background-color: grey;
+}
+.flex-container-auctions {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 50px;
+}
+
+.bold-text {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+.flex-child-profile a {
+  text-decoration: none;
+  color: black;
+}
+.bottom-border {
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+}
