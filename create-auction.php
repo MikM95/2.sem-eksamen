@@ -3,10 +3,14 @@ include('includes/functions.inc.php');
 include('includes/dbconnect.inc.php');
 include 'templates/header.php';
  ?>
-    <p class="formular">
+<h1>Create new auction</h1>
       <form method="POST">
-        <p> <h1> Opret en ny auktion</h1> </p> <br>
-        <input type="text" name="title" placeholder="Hvad sælger du"> <br>
+        <input type="text" name="title" placeholder="What are you selling?">
+        <br>
+        <label for="condition">Please select the condition of the item: </label>
+        <select name="condition">
+
+        </select>
         <!-- <label for="title">Vælg møbel type </label>  Der skal være en dropdown menu her <br> -->
         <input  type="hidden" name='created_at'>
         <input type="text" name="start_price" placeholder="Start pris"> <br>

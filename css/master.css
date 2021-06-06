@@ -68,8 +68,9 @@
   font-weight: bold;
 }
 #aside_title {
-  background-color: yellow;
-  border-radius: 8px;
+  background-color: #ffcc00;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   font-weight: bold;
   margin: 0;
   padding: 10px;
@@ -84,7 +85,7 @@
   text-decoration: none;
 }
 .list_style_tpye_aside a li:hover {
-  background-color: yellow;
-  color: blue;
+  background-color: #ffcc00;
+  color: #003399;
   font-weight: bold;
 }
