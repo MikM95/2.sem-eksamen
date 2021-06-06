@@ -16,3 +16,7 @@
 .navigation a:hover{
   font-weight: bold;
 }
+.nav_image {
+  width: 10em;
+  height: auto;
+}

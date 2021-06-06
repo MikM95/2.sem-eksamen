@@ -12,11 +12,11 @@
 	</head>
 	<body>
       <ul class="navigation">
-				<li> <a href="index.php"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ikea_logo.svg/2560px-Ikea_logo.svg.png" alt="Ikea logo" style="width:10em;height:auto;padding:0px;"></a> </li>
+				<li> <a href="index.php"><img class="nav_image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ikea_logo.svg/2560px-Ikea_logo.svg.png" alt="Ikea logo"></a> </li>
         <li> <a href="index.php">All auctions</a> </li>
-        <li> <a href="create-auction.php">Create new auction</a> </li>
 				<?php
 					if (isset($_SESSION["useruid"])) {
+						echo "<li> <a href='create-auction.php'>Create new auction</a> </li>";
 						echo "<li> <a href='profile.php'>Profile</a> </li>";
 		        echo "<li> <a href='includes/logout.inc.php'>Log out</a> </li>";
 					}
