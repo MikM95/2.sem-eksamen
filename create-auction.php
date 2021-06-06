@@ -4,41 +4,103 @@ include('includes/dbconnect.inc.php');
 include 'templates/header.php';
  ?>
 <h1>Create new auction</h1>
-      <form method="POST">
-        <input type="text" name="title" placeholder="What are you selling?">
+      <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Give your auction a title">
         <br>
         <label for="condition">Please select the condition of the item: </label>
         <select name="condition">
-
+          <!-- dette har vi tidligere lavet med php men jeg kunne ikke finde ud af kun at få bestemte muligheder ud af databasen - jeg tror måske vi skulle have lavet flere tabeller - tænker at snakke med kenneth -->
+          <option value="5">New</option>
+          <option value="7">Decent</option>
+          <option value="6">Used</option>
         </select>
-        <!-- <label for="title">Vælg møbel type </label>  Der skal være en dropdown menu her <br> -->
-        <input  type="hidden" name='created_at'>
-        <input type="text" name="start_price" placeholder="Start pris"> <br>
+        <br>
+        <!-- dette har vi tidligere lavet med php men jeg kunne ikke finde ud af kun at få bestemte muligheder ud af databasen - jeg tror måske vi skulle have lavet flere tabeller - tænker at snakke med kenneth -->
+        <label for="what">Pleace select what it is you are selling: </label>
+        <select name="what">
+          <option value="1">Beds</option>
+          <option value="2">Furniture</option>
+          <option value="3">Storage</option>
+          <option value="4">Kitchen</option>
+          <option value="8">Lighting</option>
+          <option value="9">Decoration</option>
+          <option value="10">Other</option>
+        </select>
+        <br>
+        <input type="number" name="start_price" placeholder="Auction startprice">
+        <br>
+        <textarea name="description" rows="8" cols="80" placeholder="Write a description of your item"></textarea>
+        <br>
+        <label for="auc_end">Please select the desired end date and time for your auction: </label>
+        <input type="datetime-local" name="auc_end" placeholder="Auktion slut">
+        <br>
+        <input type="file" name="image"/>
+        <br>
+        <button type="submit" name="upload">Create auction</button>
+      </form>
 
-        <input type="file" name='image' value=""/>
-          <div>
-            <button type="submit" name="upload"> UPLOAD </button>
-          </div>
-
-        <input type="text" name="description" placeholder="Beskrivelse af produktet"> <br>
-
-        <!-- Dette er ikke rigtigt endnu -->
-        <input type="datetime-local" name="auc_end" placeholder="Auktion slut"> <br>
 
 
-        <button type="submit" >Opret auktion </button>
+
         <!-- title i en tabel hvor man selv kan tilføje. skal referer ind til db tabel user_items -->
         <!-- mål skal være description -->
-      </form>
-      <<?php
-        if (isset($_POST['title'], $_POST['created_at'], $_POST['start_price'], $_POST['description'], $_POST['auc_end'] ))
+
+
+
+
+      <?php
+        if (isset($_POST['title'], $_POST['condition'],$_POST['what'], $_POST['start_price'], $_POST['description'], $_POST['auc_end'], $_FILES['image']))
         {
           $title = $_POST['title'];
+          $userid = $_SESSION["userid"];
+
           $start_price = $_POST['start_price'];
           $description = $_POST['description'];
           $auc_end = $_POST['auc_end'];
 
-          performQuery("INSERT INTO user_items(title, description, start_price, auc_end) VALUES ('$title', '$description', '$start_price', $auc_end)");
+          // forsøg på file upload ?>
+          <!-- først defineres hvor vi ønsker filen skal gemmes -->
+          <?php
+          $target_directory = "uploads/";
+          $file_name = basename($_FILES['image']['name']);
+          $target_file_location = $target_directory . $file_name;
+
+          print_r($auc_end);
+          ?><br><?php
+          print_r($file_name);
+
+
+
+          //allowed types
+          $allow_types = array('jpg','png','jpeg','gif','pdf');
+          $file_type = pathinfo($target_file_location, PATHINFO_EXTENSION);
+          if (in_array($file_type,$allow_types)) {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file_location)) {
+              $insert_image = performQuery("INSERT INTO user_items(title, user_id, start_price, image, description, auc_end) VALUES ('$title', $userid, $start_price, '$file_name', '$description', '$auc_end')");
+              if ($insert_image) {
+                echo "file has been uploaded";
+              } else {
+                echo "file upload failed";
+              }
+            } else {
+              echo "there was an error uploading your file";
+            }
+          } else {
+            echo "only image files please";
+          }
+
+
+          $condition = $_POST['condition'];
+          $what = $_POST['what'];
+
+
+          $amount_of_user_items = performQuery("SELECT id FROM user_items");
+          $id_for_this_auction =(mysqli_num_rows($amount_of_user_items)) + 1;
+
+          performQuery("INSERT INTO tag(item_id, category_id) VALUES ($id_for_this_auction, $condition)");
+          performQuery("INSERT INTO tag(item_id, category_id) VALUES ($id_for_this_auction, $what)");
+        } else {
+          echo "please select a file";
         }
        ?>
 
