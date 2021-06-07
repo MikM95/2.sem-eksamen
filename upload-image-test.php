@@ -14,6 +14,10 @@ include 'templates/header.php';
      $filename = $_FILES["uploadfile"]["name"];
      $tempname = $_FILES["uploadfile"]["tmp_name"];
           $folder = "image/".$filename;
+          //$_FILES gør at man kan vælge en fil
+          // $tempname bruges til copy af original-navnet, som en temp navn hvor billede bliver stored efter ipload
+           // $folder definere vejen for billede ind i databasen til den mappe man vil have det gemt
+           // $filename bruges til at hente eller uploade billeder
 
                //tage al data fra felter i "formen"
                $sql = "INSERT INTO image (filename) VALUES ('$filename')";
@@ -21,15 +25,19 @@ include 'templates/header.php';
                //lave query
                mysqli_query($mysqli, $sql);
 
+
                //Flyt det upload billede til mappen: image
-               if (move_uploaded_file($tempname, $folder)) {
+               if (move_uploaded_file($tempname, $folder))
+               {
                    $msg = "Billede tilføjet";
                }else{
                    $msg = "Billede ikke tilføjet";
                }
              }
              $result = mysqli_query($mysqli, "SELECT * FROM image");
+
             ?>
+
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -41,6 +49,7 @@ include 'templates/header.php';
   <body>
     <div id="content">
         <form method="post" action="" enctype="multipart/form-data">
+          <!-- enctype=... bruges til at kode filer og tillader at man kan sende gennem POST -->
           <input type="file" name="uploadfile"/>
 
 
