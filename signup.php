@@ -3,7 +3,8 @@ include 'templates/header.php';
 include('includes/dbconnect.inc.php');
 include('includes/functions.inc.php');
  ?>
-
+<hr>
+<div id="frm">
   <section class="signup-form">
     <h2>Sign Up</h2>
     <div class="signup-form-form">
@@ -11,6 +12,7 @@ include('includes/functions.inc.php');
         <input type="text" name="f_name" placeholder="Fornavn">
         <input type="text" name="l_name" placeholder="Efternavn">
         <input type="text" name="address" placeholder="Addresse">
+        <br>
         <label for="postal">Vælg postnummer: </label>
         <select name="postal">
           <?php $data = performQuery("SELECT * FROM cities");
@@ -19,10 +21,12 @@ include('includes/functions.inc.php');
           <?php } ?>
 
         </select>
+        <br>
         <input type="email" name="email" placeholder="Email">
         <input type="text" name="uid" placeholder="Brugernavn">
         <input type="password" name="pwd" placeholder="Password">
         <input type="password" name="pwdrepeat" placeholder="Gentag password">
+          <br>
         <button type="submit" name="submit">Sign Up</button>
       </form>
     </div>
@@ -53,7 +57,7 @@ include('includes/functions.inc.php');
 
      ?>
   </section>
-
+</div>
 <?php
 include 'templates/footer.php';
  ?>

@@ -98,3 +98,11 @@
   flex: 1;
   margin: 15px;
 }
+#frm {
+  border: solid grey 1px;
+  width: 25%;
+  border-radius: 2px;
+  margin: 120px auto;
+  background: white;
+  padding: 50px;
+}

@@ -3,6 +3,8 @@ include('includes/functions.inc.php');
 include('includes/dbconnect.inc.php');
 include 'templates/header.php';
  ?>
+ <hr>
+ <div id="frm">
 <h1>Create new auction</h1>
       <form method="POST" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Give your auction a title">
@@ -38,7 +40,7 @@ include 'templates/header.php';
         <br>
         <button type="submit" name="upload">Create auction</button>
       </form>
-
+</div>
 
 
 
