@@ -33,25 +33,25 @@ include('includes/functions.inc.php');
     <?php
       if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
-          echo "<p> Fill in all fields</p>";
+          echo "<p> Udfyld alle felter</p>";
         }
         else if ($_GET["error"] == "invaliduid") {
-          echo "<p> Invalid username</p>";
+          echo "<p> Invalid brugernavn</p>";
         }
         else if ($_GET["error"] == "invalidemail") {
           echo "<p> Invalid email</p>";
         }
         else if ($_GET["error"] == "passwordsmismatch") {
-          echo "<p> Passwords doesn't match</p>";
+          echo "<p> Passwords er ikke ens</p>";
         }
         else if ($_GET["error"] == "stmtfailed") {
-          echo "<p> Something went wrong, try again</p>";
+          echo "<p> Der gik noget galt, prøv igen</p>";
         }
         else if ($_GET["error"] == "usernametaken") {
-          echo "<p> Username already taken, try again</p>";
+          echo "<p> Brugernavnet er allerede taget, prøv et nyt</p>";
         }
         else if ($_GET["error"] == "none") {
-          echo "<p> You have signed up!</p>";
+          echo "<p> Du er oprettet!</p>";
         }
       }
 
