@@ -3,40 +3,40 @@ include('includes/functions.inc.php');
 include('includes/dbconnect.inc.php');
 include 'templates/header.php';
  ?>
-<h1>Create new auction</h1>
+<h1>Opret ny auktion</h1>
       <form method="POST" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Give your auction a title">
         <br>
-        <label for="condition">Please select the condition of the item: </label>
+        <label for="condition">Vælg standen på varen: </label>
         <select name="condition">
           <!-- dette har vi tidligere lavet med php men jeg kunne ikke finde ud af kun at få bestemte muligheder ud af databasen - jeg tror måske vi skulle have lavet flere tabeller - tænker at snakke med kenneth -->
-          <option value="5">New</option>
-          <option value="7">Decent</option>
-          <option value="6">Used</option>
+          <option value="5">Som ny</option>
+          <option value="7">Næsten ny</option>
+          <option value="6">Brugt</option>
         </select>
         <br>
         <!-- dette har vi tidligere lavet med php men jeg kunne ikke finde ud af kun at få bestemte muligheder ud af databasen - jeg tror måske vi skulle have lavet flere tabeller - tænker at snakke med kenneth -->
-        <label for="what">Pleace select what it is you are selling: </label>
+        <label for="what">Venligst vælg hvad du sælger: </label>
         <select name="what">
-          <option value="1">Beds</option>
-          <option value="2">Furniture</option>
-          <option value="3">Storage</option>
-          <option value="4">Kitchen</option>
-          <option value="8">Lighting</option>
-          <option value="9">Decoration</option>
-          <option value="10">Other</option>
+          <option value="1">Senge</option>
+          <option value="2">Møbler</option>
+          <option value="3">Opbevaring</option>
+          <option value="4">Køkken</option>
+          <option value="8">Belysning</option>
+          <option value="9">Dekoration</option>
+          <option value="10">Andet</option>
         </select>
         <br>
         <input type="number" name="start_price" placeholder="Auction startprice">
         <br>
         <textarea name="description" rows="8" cols="80" placeholder="Write a description of your item"></textarea>
         <br>
-        <label for="auc_end">Please select the desired end date and time for your auction: </label>
+        <label for="auc_end">Venligst vælg slut data og tid for auktionen: </label>
         <input type="datetime-local" name="auc_end" placeholder="Auktion slut">
         <br>
         <input type="file" name="image"/>
         <br>
-        <button type="submit" name="upload">Create auction</button>
+        <button type="submit" name="upload">Opret auktion</button>
       </form>
 
 

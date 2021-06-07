@@ -14,7 +14,7 @@ include 'templates/header.php';
     <?php
       if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
-          echo "<p> Fill in all fields</p>";
+          echo "<p> Udylf alle felter</p>";
         }
         else if ($_GET["error"] == "wronglogin") {
           echo "<p> Invalid login information</p>";
