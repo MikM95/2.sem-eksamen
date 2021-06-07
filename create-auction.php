@@ -76,7 +76,9 @@ include 'templates/header.php';
           $file_type = pathinfo($target_file_location, PATHINFO_EXTENSION);
           if (in_array($file_type,$allow_types)) {
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file_location)) {
-              $insert_image = performQuery("INSERT INTO user_items(title, user_id, start_price, image, description, auc_end) VALUES ('$title', $userid, $start_price, '$file_name', '$description', '$auc_end')");
+              $insert_image = performQuery("INSERT INTO user_items(
+                title, user_id, start_price, image, description, auc_end) VALUES (
+                '$title', $userid, $start_price, '$file_name', '$description', '$auc_end')");
               if ($insert_image) {
                 echo "file has been uploaded";
               } else {
@@ -94,11 +96,13 @@ include 'templates/header.php';
           $what = $_POST['what'];
 
 
-          $amount_of_user_items = performQuery("SELECT id FROM user_items");
-          $id_for_this_auction =(mysqli_num_rows($amount_of_user_items)) + 1;
+          $db_data= performQuery("SELECT id FROM user_items where title = '$title' and auc_end = '$auc_end' and start_price = $start_price");
+          while ($row = mysqli_fetch_assoc($db_data)) {
+            $id = $row['id'];
+            performQuery("INSERT INTO tag(item_id, category_id) VALUES ($id, $condition)");
+            performQuery("INSERT INTO tag(item_id, category_id) VALUES ($id, $what)");
+          }
 
-          performQuery("INSERT INTO tag(item_id, category_id) VALUES ($id_for_this_auction, $condition)");
-          performQuery("INSERT INTO tag(item_id, category_id) VALUES ($id_for_this_auction, $what)");
         } else {
           echo "please select a file";
         }
