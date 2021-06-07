@@ -89,3 +89,13 @@
   color: #003399;
   font-weight: bold;
 }
+.item_single_image {
+ width: 100%;
+}
+.wrapper {
+  display: flex;
+}
+.wrapper_child {
+  flex: 1;
+  margin: 15px;
+}

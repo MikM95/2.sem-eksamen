@@ -5,11 +5,19 @@ include 'templates/header.php';
 $item_id = $_GET['item_id'];
 ?>
 <!--- echo af standard data om auktionen  -->
+<div class="wrapper">
+
+
 <?php
 $db_data_item_single = performQuery("SELECT user_items.id, image, title, users.f_name, users.l_name, created_at, start_price, image, description, auc_end from user_items inner join users on user_items.user_id = users.id where user_items.id=$item_id");
 while ($row = mysqli_fetch_assoc($db_data_item_single)) {
 $image_link = 'uploads/'.$row['image']; ?>
-  <img src="<?php echo $image_link; ?>" alt="Image of auction item" class="item_single_image">
+<div class="wrapper_child">
+    <img src="<?php echo $image_link; ?>" alt="Image of auction item" class="item_single_image">
+</div>
+<div class="wrapper_child">
+
+
   <p>Auction for: <?php echo $row['title']; ?></p>
   <p>Seller:  <?php echo $row['f_name'] . " " . $row['l_name']; ?></p>
   <p>The auction startede at: <?php echo $row['created_at']; ?></p>
@@ -150,7 +158,8 @@ $image_link = 'uploads/'.$row['image']; ?>
 <?php } ?>
 </ul>
 
-
+</div>
+</div>
  <?php
  include 'templates/footer.php';
   ?>
