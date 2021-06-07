@@ -21,7 +21,7 @@ $image_link = 'uploads/'.$row['image']; ?>
   <p>Auction for: <?php echo $row['title']; ?></p>
   <p>Seller:  <?php echo $row['f_name'] . " " . $row['l_name']; ?></p>
   <p>The auction startede at: <?php echo $row['created_at']; ?></p>
-  <p>The startprice was: <?php echo $row['start_price']; ?></p>
+  <p>The startprice is: <?php echo $row['start_price']; ?></p>
   <?php
     $end_of_auction = strtotime($row['auc_end']);
     $sec_left = $end_of_auction - time();
