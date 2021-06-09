@@ -80,15 +80,15 @@ include 'templates/header.php';
                 title, user_id, start_price, image, description, auc_end) VALUES (
                 '$title', $userid, $start_price, '$file_name', '$description', '$auc_end')");
               if ($insert_image) {
-                echo "file has been uploaded";
+                echo "Filen blev uploadet!";
               } else {
-                echo "file upload failed";
+                echo "Fil upload fejlet";
               }
             } else {
-              echo "there was an error uploading your file";
+              echo "Der var et problem med at uploade billedet";
             }
           } else {
-            echo "only image files please";
+            echo "Kun billed filer";
           }
 
 
