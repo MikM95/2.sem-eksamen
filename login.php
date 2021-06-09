@@ -1,7 +1,6 @@
 <?php
 include 'templates/header.php';
  ?>
-<hr>
 <div id="frm">
   <section class="signup-form">
     <h2>Log In</h2>
@@ -24,7 +23,6 @@ include 'templates/header.php';
           echo "<p> Invalid login information</p>";
         }
       }
-
      ?>
   </section>
 </div>

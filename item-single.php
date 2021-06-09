@@ -6,8 +6,6 @@ $item_id = $_GET['item_id'];
 ?>
 <!--- echo af standard data om auktionen  -->
 <div class="wrapper">
-
-
 <?php
 $db_data_item_single = performQuery("SELECT user_items.id, image, title, users.f_name, users.l_name, created_at, start_price, image, description, auc_end from user_items inner join users on user_items.user_id = users.id where user_items.id=$item_id");
 while ($row = mysqli_fetch_assoc($db_data_item_single)) {
@@ -16,8 +14,6 @@ $image_link = 'uploads/'.$row['image']; ?>
     <img src="<?php echo $image_link; ?>" alt="Image of auction item" class="item_single_image">
 </div>
 <div class="wrapper_child">
-
-
   <p>Auktion for: <?php echo $row['title']; ?></p>
   <p>Sælger:  <?php echo $row['f_name'] . " " . $row['l_name']; ?></p>
   <p>Auktionen startede den: <?php echo $row['created_at']; ?></p>
@@ -53,15 +49,11 @@ $image_link = 'uploads/'.$row['image']; ?>
         $bid_id = $new['bid_id'];
         // det ville være pænere at sætte $new['bid_id'] direkte i query'en men jeg kan ikke få den til at forstå det, det virker som det ser ud nu
          performQuery("UPDATE bid SET winning_bid = 1 where bid_id = $bid_id");
-
-
       }
     }
     else {
       echo "Ingen bud modtaget i løbet af auktionen.";
     }
-
-
   } else {
     // Hvis der er mere end 0 sekunder tilbage skal det stadig være muligt at byde som normalt
       ?>
@@ -129,25 +121,13 @@ $image_link = 'uploads/'.$row['image']; ?>
           else {
             echo "Der er ingen bud på denne auktion.";
           }
-
-
   }
 
   ?>
 
 <?php
-
-
 }
-
-
-
-
   ?>
-
-
-
-
 <?php $db_category_data = performQuery("SELECT name FROM categories inner join tag on tag.category_id = categories.id WHERE tag.item_id = $item_id"); ?>
 <p>Denne vare er inkluderet i disse kategorier:</p>
 <ul>

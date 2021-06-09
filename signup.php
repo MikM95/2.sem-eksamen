@@ -3,7 +3,6 @@ include 'templates/header.php';
 include('includes/dbconnect.inc.php');
 include('includes/functions.inc.php');
  ?>
-<hr>
 <div id="frm">
   <section class="signup-form">
     <h2>Sign Up</h2>

@@ -3,7 +3,6 @@ include('includes/functions.inc.php');
 include('includes/dbconnect.inc.php');
 include 'templates/header.php';
 ?>
-<hr>
 <?php
   $userid = $_SESSION["userid"];?>
 
@@ -24,16 +23,9 @@ include 'templates/header.php';
     <?php } ?>
   </div>
 </div>
-
-
-
 <div class="flex-container-auctions">
-
 <div class="flex-child-profile">
-
-
 <?php
-
 // echo af egne auktioners data
 $db_own_auctions = performQuery("SELECT id, title, created_at, auc_end from user_items where user_id = $userid");
 if (mysqli_num_rows($db_own_auctions) > 0) {
@@ -55,10 +47,7 @@ if (mysqli_num_rows($db_own_auctions) > 0) {
 }
 ?>
 </div>
-
 <div class="flex-child-profile">
-
-
 <?php
 // echo af auktioner du har aktive bud på
 // Det er blevet til noget af en smøre - tænker vi tager den sammen senere
@@ -114,8 +103,6 @@ GROUP by bid.item_id");
 </div>
 <div class="flex-child-profile">
 <?php
-
-
 // Echo af auktioner du har vundet
 
 $db_won_auctions = performQuery("SELECT user_items.id, bid.bid_amount, title, created_at, start_price, image, auc_end, f_name, l_name, email FROM bid
@@ -141,10 +128,7 @@ if (mysqli_num_rows($db_won_auctions) > 0 ) { ?>
   // Hvis antallet af rows vi får tilbage fra databasen er mindre end nul har brugeren ikke vundet nogle auktioner
   ?>
   <p class="bold-text"><?php echo "Du har ikke vundet nogle auktioner endnu"; ?> </p>
-
   <?php }
-
-
  ?>
  </div>
 </div>
