@@ -41,7 +41,7 @@ if (mysqli_num_rows($db_own_auctions) > 0) {
   while ($own_auctions = mysqli_fetch_assoc($db_own_auctions)) {
   $item_id = $own_auctions['id'];
   ?><a href="item-single.php?item_id=<?php echo $item_id; ?>">
-  <p>Title: <?php echo $own_auctions['title']; ?></p>
+  <p>Titel: <?php echo $own_auctions['title']; ?></p>
   <p>Auktion oprettet den: <?php echo $own_auctions['created_at']; ?>
   <p class="bottom-border">Auktionen slutter: <?php echo $own_auctions['auc_end']; ?>
   </a>
