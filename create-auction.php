@@ -27,9 +27,9 @@ include 'templates/header.php';
           <option value="10">Andet</option>
         </select>
         <br>
-        <input type="number" name="start_price" placeholder="Auction startprice">
+        <input type="number" name="start_price" placeholder="Startpris">
         <br>
-        <textarea name="description" rows="8" cols="80" placeholder="Write a description of your item"></textarea>
+        <textarea name="description" rows="8" cols="80" placeholder="Beskrivelse af vare"></textarea>
         <br>
         <label for="auc_end">Venligst vælg slut data og tid for auktionen: </label>
         <input type="datetime-local" name="auc_end" placeholder="Auktion slut">
