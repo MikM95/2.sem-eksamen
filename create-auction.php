@@ -104,7 +104,7 @@ include 'templates/header.php';
           }
 
         } else {
-          echo "please select a file";
+          echo "Venligst vælg en fil";
         }
        ?>
 
