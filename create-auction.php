@@ -5,7 +5,7 @@ include 'templates/header.php';
  ?>
 <h1>Opret ny auktion</h1>
       <form method="POST" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Give your auction a title">
+        <input type="text" name="title" placeholder="Giv din auktion en titel">
         <br>
         <label for="condition">Vælg standen på varen: </label>
         <select name="condition">
