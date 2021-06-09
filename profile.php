@@ -128,7 +128,7 @@ if (mysqli_num_rows($db_won_auctions) > 0 ) { ?>
         while ($won_auctions = mysqli_fetch_assoc($db_won_auctions)) {
         $id_item = $won_auctions['id']; ?>
         <a href="item-single.php?item_id=<?php echo $id_item; ?>">
-        <p>Title: <?php echo $won_auctions['title']; ?></p>
+        <p>Titel: <?php echo $won_auctions['title']; ?></p>
         <?php // echo af image ?>
         <p>Auktionen sluttede:  <?php echo $won_auctions['auc_end'];  ?></p>
         <p>Startprisen:  <?php echo $won_auctions['start_price'];  ?></p>
