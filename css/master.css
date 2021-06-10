@@ -22,6 +22,7 @@
   flex: 1;
   margin: 20px;
   text-align: center;
+  min-width: 225px;
 }
 
 .formular{
