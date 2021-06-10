@@ -9,7 +9,9 @@ include 'templates/header.php';
 <ul class="list_style_tpye_aside">
   <?php $db_categories_data = performQuery("SELECT * FROM categories");
   while ($categories = mysqli_fetch_assoc($db_categories_data)) { ?>
-  <a href="index.php?category_id=<?php echo $categories['id']; ?> "><li><?php echo $categories['name']; ?></li></a>
+  <a href="index.php?category_id=<?php echo $categories['id']; ?> "><li><?php echo $categories['name']; ?>
+    (<?php $category_id = $categories['id'];
+     $db_amount_tag = performQuery("SELECT * FROM tag where tag.category_id = $category_id"); echo mysqli_num_rows($db_amount_tag); ?>)</li></a>
   <?php } ?>
 </ul>
 </aside>
