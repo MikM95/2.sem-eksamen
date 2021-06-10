@@ -51,9 +51,10 @@ $image_link = 'uploads/'.$row['image']; ?>
          performQuery("UPDATE bid SET winning_bid = 1 where bid_id = $bid_id");
       }
     }
-    else {
-      echo "Ingen bud modtaget i løbet af auktionen.";
-    }
+    else {?>
+      <p><?php echo "Ingen bud modtaget i løbet af auktionen."; ?></p>
+      <?php
+      }
   } else {
     // Hvis der er mere end 0 sekunder tilbage skal det stadig være muligt at byde som normalt
       ?>
@@ -114,7 +115,7 @@ $image_link = 'uploads/'.$row['image']; ?>
 
           if(mysqli_num_rows($db_bid_data) > 0){
             while($new = mysqli_fetch_assoc($db_bid_data)) { ?>
-              <p>nuværende højeste bud: <?php echo $new['bid_amount']; ?></p>
+              <p>Nuværende højeste bud: <?php echo $new['bid_amount']; ?></p>
               <?php
             }
           }
