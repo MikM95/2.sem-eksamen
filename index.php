@@ -51,7 +51,7 @@ if (mysqli_num_rows($db_bid_data) > 0) {
 
 <?php }
 } else { ?>
-  <p><?php echo "Be the first one to bid on this item"; ?></p>
+  <p><?php echo "Vær' den første til at byde på denne auktion"; ?></p>
 
 <?php } ?>
 
