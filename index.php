@@ -14,13 +14,23 @@ include 'templates/header.php';
      $db_amount_tag = performQuery("SELECT * FROM tag where tag.category_id = $category_id"); echo mysqli_num_rows($db_amount_tag); ?>)</li></a>
   <?php } ?>
 </ul>
+<p id="search_title">Søg på titler</p>
+<form method="get" class="search_form">
+  <input type="text" name="search" class="search_bar">
+  <button type="submit">Søg</button>
+</form>
 </aside>
 <main class="flex-child-main">
 <?php
 if (isset($_GET['category_id'])) {
   $select_categry = $_GET['category_id'];
   $db_data = performQuery("SELECT user_items.id, title, image, auc_end, start_price, tag.category_id FROM user_items inner join tag on tag.item_id = user_items.id where tag.category_id = $select_categry");
-} else {
+} elseif (isset($_GET['search'])) {
+  // søgefunktion
+  $search = $_GET['search'];
+  $db_data = performQuery("SELECT id, title, image, auc_end, start_price FROM user_items where title Like '%$search%'");
+}
+else {
   $db_data = performQuery("SELECT id, title, image, auc_end, start_price FROM user_items");
 }
 
