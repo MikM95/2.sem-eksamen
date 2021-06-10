@@ -17,7 +17,7 @@ include 'templates/header.php';
 <p id="search_title">Søg på titler</p>
 <form method="get" class="search_form">
   <input type="text" name="search" class="search_bar">
-  <button type="submit">Søg</button>
+  <button type="submit" class="search_button">Søg</button>
 </form>
 </aside>
 <main class="flex-child-main">

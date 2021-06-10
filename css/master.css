@@ -119,3 +119,7 @@
 .search_bar {
   margin-bottom: 10px;
 }
+.search_button {
+  /* kommer i spil når man sorterer efter produkter - og der kun kommer få produkter frem */
+  margin-bottom: 10px;
+}
