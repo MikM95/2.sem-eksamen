@@ -9,13 +9,11 @@ include 'templates/header.php';
         <br>
         <label for="condition">Vælg standen på varen: </label>
         <select name="condition">
-          <!-- dette har vi tidligere lavet med php men jeg kunne ikke finde ud af kun at få bestemte muligheder ud af databasen - jeg tror måske vi skulle have lavet flere tabeller - tænker at snakke med kenneth -->
           <option value="5">Som ny</option>
           <option value="7">Næsten ny</option>
           <option value="6">Brugt</option>
         </select>
         <br>
-        <!-- dette har vi tidligere lavet med php men jeg kunne ikke finde ud af kun at få bestemte muligheder ud af databasen - jeg tror måske vi skulle have lavet flere tabeller - tænker at snakke med kenneth -->
         <label for="what">Venligst vælg hvad du sælger: </label>
         <select name="what">
           <option value="1">Senge</option>
@@ -31,7 +29,7 @@ include 'templates/header.php';
         <br>
         <textarea name="description" rows="8" cols="80" placeholder="Beskrivelse af vare"></textarea>
         <br>
-        <label for="auc_end">Venligst vælg slut data og tid for auktionen: </label>
+        <label for="auc_end">Venligst vælg slut dato og tid for auktionen: </label>
         <input type="datetime-local" name="auc_end" placeholder="Auktion slut">
         <br>
         <input type="file" name="image"/>
@@ -39,15 +37,6 @@ include 'templates/header.php';
         <button type="submit" name="upload">Opret auktion</button>
       </form>
 </div>
-
-
-
-        <!-- title i en tabel hvor man selv kan tilføje. skal referer ind til db tabel user_items -->
-        <!-- mål skal være description -->
-
-
-
-
       <?php
         if (isset($_POST['title'], $_POST['condition'],$_POST['what'], $_POST['start_price'], $_POST['description'], $_POST['auc_end'], $_FILES['image']))
         {
@@ -58,7 +47,7 @@ include 'templates/header.php';
           $description = $_POST['description'];
           $auc_end = $_POST['auc_end'];
 
-          // forsøg på file upload ?>
+          //file upload ?>
           <!-- først defineres hvor vi ønsker filen skal gemmes -->
           <?php
           $target_directory = "uploads/";

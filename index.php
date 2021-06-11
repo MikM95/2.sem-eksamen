@@ -14,13 +14,23 @@ include 'templates/header.php';
      $db_amount_tag = performQuery("SELECT * FROM tag where tag.category_id = $category_id"); echo mysqli_num_rows($db_amount_tag); ?>)</li></a>
   <?php } ?>
 </ul>
+<p id="search_title">Søg på titler</p>
+<form method="get" class="search_form">
+  <input type="text" name="search" class="search_bar">
+  <button type="submit" class="search_button">Søg</button>
+</form>
 </aside>
 <main class="flex-child-main">
 <?php
 if (isset($_GET['category_id'])) {
   $select_categry = $_GET['category_id'];
   $db_data = performQuery("SELECT user_items.id, title, image, auc_end, start_price, tag.category_id FROM user_items inner join tag on tag.item_id = user_items.id where tag.category_id = $select_categry");
-} else {
+} elseif (isset($_GET['search'])) {
+  // søgefunktion
+  $search = $_GET['search'];
+  $db_data = performQuery("SELECT id, title, image, auc_end, start_price FROM user_items where title Like '%$search%'");
+}
+else {
   $db_data = performQuery("SELECT id, title, image, auc_end, start_price FROM user_items");
 }
 
@@ -41,11 +51,9 @@ if (mysqli_num_rows($db_bid_data) > 0) {
 
 <?php }
 } else { ?>
-  <p><?php echo "Be the first one to bid on this item"; ?></p>
+  <p><?php echo "Vær' den første til at byde på denne auktion"; ?></p>
 
 <?php } ?>
-
-<?php //jeg har det problem at siden ikke vil vise startprisen på en vare hvis der ikke er kommet et bud på varen. På vare 2 har jeg lagt et bud ind i databasen som er under startprisen og så virker det. Det er dog ikke meningen at man skal kunne byde under startprisen. En mulig løsning er at lave det sådan at man opretter et bud på startprisen når man sætter en ting til salg, men det giver problemer hvis ingen byder på varen, så vinder man den selv? der må være en smartere måde at lave det på. spørg kenneth tirsdag ?>
 </a>
     </div>
 
