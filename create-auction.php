@@ -31,7 +31,7 @@ include 'templates/header.php';
         <br>
         <textarea name="description" rows="8" cols="80" placeholder="Beskrivelse af vare"></textarea>
         <br>
-        <label for="auc_end">Venligst vælg slut data og tid for auktionen: </label>
+        <label for="auc_end">Venligst vælg slut dato og tid for auktionen: </label>
         <input type="datetime-local" name="auc_end" placeholder="Auktion slut">
         <br>
         <input type="file" name="image"/>
