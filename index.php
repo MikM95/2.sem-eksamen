@@ -54,8 +54,6 @@ if (mysqli_num_rows($db_bid_data) > 0) {
   <p><?php echo "Vær' den første til at byde på denne auktion"; ?></p>
 
 <?php } ?>
-
-<?php //jeg har det problem at siden ikke vil vise startprisen på en vare hvis der ikke er kommet et bud på varen. På vare 2 har jeg lagt et bud ind i databasen som er under startprisen og så virker det. Det er dog ikke meningen at man skal kunne byde under startprisen. En mulig løsning er at lave det sådan at man opretter et bud på startprisen når man sætter en ting til salg, men det giver problemer hvis ingen byder på varen, så vinder man den selv? der må være en smartere måde at lave det på. spørg kenneth tirsdag ?>
 </a>
     </div>
 

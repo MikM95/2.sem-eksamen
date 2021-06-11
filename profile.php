@@ -50,16 +50,7 @@ if (mysqli_num_rows($db_own_auctions) > 0) {
 <div class="flex-child-profile">
 <?php
 // echo af auktioner du har aktive bud på
-// Det er blevet til noget af en smøre - tænker vi tager den sammen senere
-// jeg har brugt group by item id fordi jeg kun ønsker at trække den enkelte auktion ud en gang - hvis man kommer i en bud kamp kan man nemt byde mange gange på et produkt - men vi er kun interesseret i at de auktioner man er i kommer ud en gang. Tænker evt at spørge kenneth og det er den bedste måde at gøre det på.
-
-// $db_active_auction_bids = performQuery("SELECT bid.user_id, bid.item_id, MAX(bid.bid_amount), max(bid.bid_at), user_items.title, user_items.user_id, user_items.created_at, user_items.start_price, user_items.auc_end, user_items.title, users.f_name, users.l_name, users.email from bid
-// INNER JOIN user_items on user_items.id = bid.item_id
-// INNER JOIN users on user_items.user_id = users.id
-// WHERE bid.bid_at < user_items.auc_end and bid.user_id = $userid
-// GROUP by bid.item_id
-
-
+// jeg har brugt group by item id fordi jeg kun ønsker at trække den enkelte auktion ud en gang - hvis man kommer i en bud kamp kan man nemt byde mange gange på et produkt - men vi er kun interesseret i at de auktioner man er i kommer ud en gang.
 $db_active_auction_bids = performQuery("SELECT bid.user_id, bid.item_id, user_items.title, user_items.user_id, user_items.created_at, user_items.start_price, user_items.auc_end, user_items.title, users.f_name, users.l_name, users.email from bid
 INNER JOIN user_items on user_items.id = bid.item_id
 INNER JOIN users on user_items.user_id = users.id
@@ -73,7 +64,6 @@ GROUP by bid.item_id");
           $item_id = $active_auction_bids['item_id']; ?>
           <a href="item-single.php?item_id=<?php echo $item_id; ?>">
           <p>Titel: <?php echo $active_auction_bids['title']; ?></p>
-          <?php // echo af image ?>
           <p>Startprisen var: <?php echo $active_auction_bids['start_price'];  ?></p>
           <p>Auktionen begyndte: <?php echo $active_auction_bids['created_at'];  ?></p>
           <p>Auktionen slutter: <?php echo $active_auction_bids['auc_end'] ?></p>
@@ -105,7 +95,7 @@ GROUP by bid.item_id");
 <?php
 // Echo af auktioner du har vundet
 
-$db_won_auctions = performQuery("SELECT user_items.id, bid.bid_amount, title, created_at, start_price, image, auc_end, f_name, l_name, email FROM bid
+$db_won_auctions = performQuery("SELECT user_items.id, bid.bid_amount, title, created_at, start_price, auc_end, f_name, l_name, email FROM bid
 inner join user_items on user_items.id = bid.item_id
 INNER JOIN users on user_items.user_id = users.id
 where bid.user_id = $userid and bid.winning_bid= 1");
@@ -116,7 +106,6 @@ if (mysqli_num_rows($db_won_auctions) > 0 ) { ?>
         $id_item = $won_auctions['id']; ?>
         <a href="item-single.php?item_id=<?php echo $id_item; ?>">
         <p>Titel: <?php echo $won_auctions['title']; ?></p>
-        <?php // echo af image ?>
         <p>Auktionen sluttede:  <?php echo $won_auctions['auc_end'];  ?></p>
         <p>Startprisen:  <?php echo $won_auctions['start_price'];  ?></p>
         <p>Du købte den for:  <?php echo $won_auctions['bid_amount'];  ?></p>

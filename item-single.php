@@ -47,7 +47,6 @@ $image_link = 'uploads/'.$row['image']; ?>
         <?php
   // sætter winnig_bid til true i databasen
         $bid_id = $new['bid_id'];
-        // det ville være pænere at sætte $new['bid_id'] direkte i query'en men jeg kan ikke få den til at forstå det, det virker som det ser ud nu
          performQuery("UPDATE bid SET winning_bid = 1 where bid_id = $bid_id");
       }
     }
