@@ -9,19 +9,20 @@ include 'templates/header.php';
         <br>
         <label for="condition">Vælg standen på varen: </label>
         <select name="condition">
-          <?php
-          $db_cond = performQuery("SELECT * FROM cond");
-          while ($cond = mysqli_fetch_assoc($db_cond)) { ?>
-            <option value="<?php echo $cond['id'] ?>"><?php echo $cond['cond_name']; ?></option>
-      <?php } ?>
+          <option value="5">Som ny</option>
+          <option value="7">Næsten ny</option>
+          <option value="6">Brugt</option>
         </select>
         <br>
         <label for="what">Venligst vælg hvad du sælger: </label>
         <select name="what">
-          <?php $db_category = performQuery("SELECT * FROM categories");
-          while ($category = mysqli_fetch_assoc($db_category)) { ?>
-            <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-          <?php } ?>
+          <option value="1">Senge</option>
+          <option value="2">Møbler</option>
+          <option value="3">Opbevaring</option>
+          <option value="4">Køkken</option>
+          <option value="8">Belysning</option>
+          <option value="9">Dekoration</option>
+          <option value="10">Andet</option>
         </select>
         <br>
         <input type="number" name="start_price" placeholder="Startpris">

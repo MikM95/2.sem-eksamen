@@ -85,7 +85,7 @@
     }
 
     function createUser($mysqli, $username, $email, $pwd, $f_name, $l_name, $address, $postal) {
-      $sql = "INSERT INTO users (username, email, password, f_name, l_name, address, cities_postal) VALUES(?, ?, ?, ?, ?, ?, ?);";
+      $sql = "INSERT INTO users (username, email, password, f_name, l_name, address, postal) VALUES(?, ?, ?, ?, ?, ?, ?);";
       $stmt = mysqli_stmt_init($mysqli);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../signup.php?error=stmtfailed");
