@@ -7,7 +7,7 @@ $item_id = $_GET['item_id'];
 <!--- echo af standard data om auktionen  -->
 <div class="wrapper">
 <?php
-$db_data_item_single = performQuery("SELECT user_items.id, image, title, users.f_name, users.l_name, created_at, start_price, image, description, auc_end from user_items inner join users on user_items.user_id = users.id where user_items.id=$item_id");
+$db_data_item_single = performQuery("SELECT * FROM auktions_info where auktions_info.id=$item_id");
 while ($row = mysqli_fetch_assoc($db_data_item_single)) {
 $image_link = 'uploads/'.$row['image']; ?>
 <div class="wrapper_child">
@@ -27,12 +27,12 @@ $image_link = 'uploads/'.$row['image']; ?>
     $sec_left_minus_everything = floor($sec_left - ($min_left_minus_days_and_hours * 60) - ($hours_left_minus_days * 60*60) - ($days_left * 60*60*24));
   ?>
   <p>Sælgers beskrivelse af produktet:  <?php echo $row['description']; ?></p>
-
+  <p>Sælgers vudering af varens stand: <?php echo $row['name']; ?></p>
 <?php
   if ($sec_left < 0) {
     // Når der er mindre end 0 sekunder af nedtællingen, er det ikke længere muligt at byde på auktionen, derfor skal bud indput feltet ikke vises
-    echo "Auktionen er slut, det er ikke muligt at byde";
     ?>
+    <p><?php echo "Auktionen er slut, det er ikke muligt at byde"; ?></p>
     <p>Auktionen slutter den: <?php echo $row['auc_end']; ?></p>
 
     <!-- echo af det vindende bud + fornavn og efternavn på den person der gav det vindende bud -->
@@ -73,11 +73,11 @@ $image_link = 'uploads/'.$row['image']; ?>
         </form>
         <?php
       }
-      else {
-        echo "Du skal være logget ind for at kunne byde";
+      else { ?>
+        <p><?php echo "Du skal være logget ind for at kunne byde"; ?></p>
+        <?php
       }
       ?>
-
       <!-- select bids -->
       <?php
       $db_bid_data = performQuery("SELECT bid_amount FROM bid WHERE item_id =$item_id");
@@ -89,9 +89,9 @@ $image_link = 'uploads/'.$row['image']; ?>
             $userid = $_SESSION["userid"];
             performQuery("INSERT INTO bid(user_id, item_id, bid_amount) VALUES ($userid, $item_id,$bid)");
           }
-          if (isset($_POST['bid']) and $_POST['bid'] < $start_price['start_price']){
-              echo "Dit bud skal være over startprisen bud";
-
+          if (isset($_POST['bid']) and $_POST['bid'] < $start_price['start_price']){?>
+              <p><?php echo "Dit bud skal være over startprisen bud"; ?></p>
+              <?php
             }
           }
         } else {
@@ -102,8 +102,9 @@ $image_link = 'uploads/'.$row['image']; ?>
               $userid = $_SESSION["userid"];
               performQuery("INSERT INTO bid(user_id, item_id, bid_amount) VALUES ($userid, $item_id,$bid)");
               }
-              if (isset($_POST['bid']) and $_POST['bid'] < $db_highest_bid['bid_amount']){
-                echo "Dit bud skal være over det nuværende højeste bud";
+              if (isset($_POST['bid']) and $_POST['bid'] < $db_highest_bid['bid_amount']){ ?>
+                <p><?php echo "Dit bud skal være over det nuværende højeste bud"; ?></p>
+              <?php
               }
             }
           }
@@ -118,9 +119,9 @@ $image_link = 'uploads/'.$row['image']; ?>
               <?php
             }
           }
-          else {
-            echo "Der er ingen bud på denne auktion.";
-          }
+          else { ?>
+            <p> <?php echo "Der er ingen bud på denne auktion."; ?></p>
+        <?php  }
   }
 
   ?>
