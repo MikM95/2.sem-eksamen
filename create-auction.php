@@ -16,7 +16,7 @@ include 'templates/header.php';
       <?php } ?>
         </select>
         <br>
-        <label for="what">Venligst vælg hvad du sælger: </label>
+        <label for="what">Vælg hvad du sælger: </label>
         <select name="what">
           <?php $db_category = performQuery("SELECT * FROM categories");
           while ($category = mysqli_fetch_assoc($db_category)) { ?>

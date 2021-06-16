@@ -77,20 +77,20 @@
   text-align: center;
   /* border radius for at border passer med diven der er udenom denne <p> */
 }
-#search_title {
+.aside_title {
   background-color: #ffcc00;
   text-align: center;
   font-weight: bold;
   padding: 5px;
 }
-.list_style_tpye_aside {
+.list_style_type_aside {
   list-style-type: none;
 }
-.list_style_tpye_aside a {
+.list_style_type_aside a {
   color: black;
   text-decoration: none;
 }
-.list_style_tpye_aside a li:hover {
+.list_style_type_aside a li:hover {
   background-color: #ffcc00;
   color: #003399;
   font-weight: bold;
@@ -113,13 +113,13 @@
   background: white;
   padding: 50px;
 }
-.search_form {
+.aside_form {
   text-align: center;
 }
-.search_bar {
+.aside_bar {
   margin-bottom: 10px;
 }
-.search_button {
+.aside_button {
   /* kommer i spil når man sorterer efter produkter - og der kun kommer få produkter frem */
   margin-bottom: 10px;
 }
