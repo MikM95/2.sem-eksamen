@@ -11,7 +11,8 @@ include 'templates/header.php';
   while ($categories = mysqli_fetch_assoc($db_categories_data)) { ?>
   <a href="index.php?category_id=<?php echo $categories['id']; ?> "><li><?php echo $categories['name']; ?>
     <?php $category_id = $categories['id'];
-     $db_amount_tag = performQuery("SELECT * FROM tag where tag.category_id = $category_id"); echo '('. mysqli_num_rows($db_amount_tag); ?>)</li></a>
+     $db_amount_tag = performQuery("SELECT * FROM tag where tag.category_id = $category_id");
+     echo '('. mysqli_num_rows($db_amount_tag); ?>)</li></a>
   <?php } ?>
 </ul>
 <p class="aside_title">Varens stand</p>
@@ -21,22 +22,42 @@ include 'templates/header.php';
     <a href="index.php?cond_id=<?php echo $cond_data['id']; ?> "><li><?php echo $cond_data['name']; ?>
       <?php $cond_id = $cond_data['id'];
        $db_amount_cond = performQuery("SELECT user_items.cond_id FROM user_items where user_items.cond_id = $cond_id"); echo '('.mysqli_num_rows($db_amount_cond); ?>)</li></a>
-<?php } ?>
+       <?php } ?>
 </ul>
 <p class="aside_title">Søg på titler</p>
 <form method="get" class="aside_form">
+  <?php
+    //kombination af MAKS PRIS og TITEL
+    if (isset($_GET['max_price'])) { ?>
+      <input type="hidden" name="max_price" value="<?php echo $_GET['max_price']; ?>">
+    <?php } ?>
   <input type="text" name="search" class="aside_bar">
   <button type="submit">Søg</button>
 </form>
 <p class="aside_title">Maks pris</p>
 <form method="get" class="aside_form">
+  <?php
+    //Kombination af KATEGORI og MAKS PRIS
+    if (isset($_GET['category_id'])) { ?>
+      <input type="hidden" name="category_id" value="<?php echo $_GET['category_id']; ?>">
+    <?php } ?>
+    <?php
+      //kombination af STAND og MAKS PRIS
+      if (isset($_GET['cond_id'])) { ?>
+        <input type="hidden" name="cond_id" value="<?php echo $_GET['cond_id']; ?>">
+      <?php } ?>
+      <?php
+        //kombination af TITEL og MAKS PRIS
+        if (isset($_GET['search'])) { ?>
+          <input type="hidden" name="search" value="<?php echo $_GET['search']; ?>">
+        <?php } ?>
   <input type="number" name="max_price" class="aside_bar">
   <button type="submit" class="aside_button">Søg</button>
 </form>
 </aside>
 <main class="flex-child-main">
 <?php
-// valg af database udtræk afhænigt af om der er valt en kategori, om der er søgt ellers tages "standard" database udtrækket
+// valg af database udtræk afhænigt af om der er valt en kategori,om der er valgt stand, om der er søgt ellers tages "standard" database udtrækket
 if (isset($_GET['category_id'])) {
   $select_categry = $_GET['category_id'];
   $db_data = performQuery("SELECT user_items.id, title, auc_end, start_price, tag.category_id FROM user_items inner join tag on tag.item_id = user_items.id where tag.category_id = $select_categry");
