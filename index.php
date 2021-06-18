@@ -15,6 +15,7 @@ include 'templates/header.php';
      echo '('. mysqli_num_rows($db_amount_tag); ?>)</li></a>
   <?php } ?>
 </ul>
+<?php //STAND SORTERING  ?>
 <p class="aside_title">Varens stand</p>
 <ul class="list_style_type_aside">
   <?php $db_cond_data = performQuery("SELECT * FROM cond");
